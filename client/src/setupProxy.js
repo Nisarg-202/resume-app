@@ -1,10 +1,24 @@
-const createProxyMiddleware = require('http-proxy-middleware');
+const createProxyMiddleware = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
-    '/*',
+    "/countries",
     createProxyMiddleware({
-      target: 'https://polar-atoll-36675.herokuapp.com',
+      target: process.env.REACT_APP_SERVER_URL,
+    })
+  );
+
+  app.use(
+    "/addResume",
+    createProxyMiddleware({
+      target: process.env.REACT_APP_SERVER_URL,
+    })
+  );
+
+  app.use(
+    "/getResume",
+    createProxyMiddleware({
+      target: process.env.REACT_APP_SERVER_URL,
     })
   );
 };
